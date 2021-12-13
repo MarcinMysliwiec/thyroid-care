@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, useEffect } from 'react'
+import React, { createContext, useContext, useState, useEffect, useMemo } from 'react'
 import * as Google from 'expo-google-app-auth'
 import { GoogleAuthProvider, onAuthStateChanged, signInWithCredential, signOut } from '@firebase/auth'
 import { auth } from '../firebase';
@@ -47,21 +47,28 @@ export const AuthProvider = ({ children }) => {
         })
             .catch((e) => setError(e))
             .finally(() => setLoading(false));
-    }
+    };
 
     const logout = async () => {
         setLoading(true);
-        signOut(auth).catch(e => setError(e)).finally(() => setLoading(false));
-    }
+        signOut(auth)
+            .catch(e => setError(e))
+            .finally(() => setLoading(false));
+    };
+
+
+    const memoedValue = useMemo(() => ({
+        user,
+        loading,
+        error,
+        signInWithGoogle,
+        logout
+    }),
+        // Update only if those changees:
+        [user, loading, error]);
 
     return (
-        <AuthContext.Provider value={{
-            user,
-            loading,
-            error,
-            signInWithGoogle,
-            logout
-        }}>
+        <AuthContext.Provider value={memoedValue}>
             {!loadingInitial && children}
         </AuthContext.Provider >
     )
