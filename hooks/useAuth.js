@@ -23,7 +23,6 @@ export const AuthProvider = ({ children }) => {
         () =>
             onAuthStateChanged(auth, (user) => {
                 if (user) {
-                    // logged in user...
                     setUser(user);
                 } else {
                     setUser(null);
