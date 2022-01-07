@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useEffect, useMemo } from 'react'
 import * as Google from 'expo-google-app-auth'
 import { GoogleAuthProvider, onAuthStateChanged, signInWithCredential, signOut } from '@firebase/auth'
-import { auth } from '../firebase';
+import { auth } from '../../firebase';
 const AuthContext = createContext({
     // initial state...
 });
@@ -63,7 +63,7 @@ export const AuthProvider = ({ children }) => {
         signInWithGoogle,
         logout
     }),
-        // Update only if those changees:
+        // Update only if those changes:
         [user, loading, error]);
 
     return (
