@@ -2,7 +2,7 @@ import React, { componentDidMount } from 'react'
 import { View, Image, StyleSheet, TouchableOpacity, StatusBar } from 'react-native'
 import { Colors } from '../helpers/colors.js';
 import { LoadingComponent, ContentWrapper, CustomText } from '../Components';
-import useAuth from '../hooks/useAuth';
+import { useAuth } from '../hooks';
 
 
 const LoginScreen = () => {

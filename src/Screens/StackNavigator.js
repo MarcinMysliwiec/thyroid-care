@@ -5,6 +5,7 @@ import LoginScreen from './LoginScreen';
 import OptionsScreen from "./OptionsScreen";
 import useAuth from '../hooks/useAuth';
 import { Colors } from "../helpers/colors";
+import AnalysisScreen from "./AnalysisScreen";
 
 
 const Stack = createNativeStackNavigator();
@@ -36,12 +37,13 @@ const StackNavigator = () => {
     <Stack.Navigator screenOptions={navigatorOptions} mode="modal">
       {user ? (
         <>
-          <Stack.Screen name="Home" component={HomeScreen} />
-          <Stack.Screen name="Options" component={OptionsScreen} />
+          <Stack.Screen name="Analysis" component={AnalysisScreen}/>
+          <Stack.Screen name="Home" component={HomeScreen}/>
+          <Stack.Screen name="Options" component={OptionsScreen}/>
         </>
       ) : (
         <>
-          <Stack.Screen name="Login" component={LoginScreen} />
+          <Stack.Screen name="Login" component={LoginScreen}/>
         </>
       )}
     </Stack.Navigator>

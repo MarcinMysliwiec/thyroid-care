@@ -3,7 +3,7 @@ import { StatusBar, StyleSheet, View } from 'react-native'
 import useAuth from '../hooks/useAuth';
 import { ContentWrapperWithMenu, FeelingChanger, FeelingTabs, CustomText } from '../Components';
 import CalendarStrip from 'react-native-calendar-strip';
-import { Colors } from '../helpers/colors.js';
+import { Colors, RandomHEX } from '../helpers/colors.js';
 import moment from 'moment';
 import 'moment/locale/pl';
 
@@ -93,23 +93,42 @@ const HomeScreen = () => {
     end: moment()
   }]
 
+  const avCol = [RandomHEX(),RandomHEX(),RandomHEX(),RandomHEX(),RandomHEX(),RandomHEX()]
+
   const markedDatesArray = [{
     date: moment(),
     dots: [
       {
-        color: 'white',
-        selectedColor: 'white',
+        color: avCol[0],
+        selectedColor: avCol[0],
       },
       {
-        color: 'red',
-        selectedColor: 'red',
+        color: avCol[1],
+        selectedColor: avCol[1],
       },
       {
-        color: 'blue',
-        selectedColor: 'blue',
+        color: avCol[2],
+        selectedColor: avCol[2],
       },
     ],
-  }]
+  },
+    {
+      date: moment().subtract(3, 'days'),
+      dots: [
+        {
+          color: avCol[3],
+          selectedColor: avCol[3],
+        },
+        {
+          color: avCol[4],
+          selectedColor: avCol[4],
+        },
+        {
+          color: avCol[5],
+          selectedColor: avCol[5],
+        },
+      ],
+    }]
 
   // console.log(markedDatesArray)
   // console.log(datesWhitelist)
@@ -127,6 +146,8 @@ const HomeScreen = () => {
         <CustomText style={styles.headerText}>Witaj {firstName}.</CustomText>
         <CustomText style={styles.headerText}>Jak się dziś czujesz?</CustomText>
       </View>
+
+      <View style={styles.body}>
 
       <FeelingTabs style={styles.feelingTabs} availableTabs={availableTabs} currentTab={currentTab}
                    setCurrentTab={setCurrentTab}/>
@@ -149,8 +170,11 @@ const HomeScreen = () => {
           highlightDateNameStyle={{ color: Colors.secondary }}
           datesWhitelist={datesWhitelist}
           markedDates={markedDatesArray}
+          maxDate={moment()}
         />
       </View>
+      </View>
+
     </ContentWrapperWithMenu>
   )
 }
@@ -170,8 +194,18 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     width: '100%',
   },
-  feelingTabs: { flex: 1, },
-  feelingChanger: { flex: 4, },
-  temp: { flex: 1, backgroundColor: 'blue', },
+  body: {
+    flex: 6,
+    width:'100%'
+  },
+  feelingTabs: {
+    flex: 1,
+  },
+  feelingChanger: {
+    flex: 4,
+  },
+  temp: {
+    flex: 1,
+  },
 
 });

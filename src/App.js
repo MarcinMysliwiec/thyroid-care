@@ -5,12 +5,8 @@ import StackNavigator from "./Screens/StackNavigator";
 import { StatusBar } from 'react-native'
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Colors } from './helpers/colors.js';
-
 import AppLoading from 'expo-app-loading';
-
-import { SettingsProvider } from './hooks/useSettings';
-import { AuthProvider } from './hooks/useAuth';
-import useFonts from './hooks/useFonts';
+import { SettingsProvider, AuthProvider } from './hooks';
 
 
 const App = () => {
@@ -32,7 +28,7 @@ const App = () => {
   }
 
   return (
-    <NavigationContainer theme={{ colors: { background: Colors.dark }}}>
+    <NavigationContainer theme={{ colors: { background: Colors.dark } }}>
       <StatusBar
         backgroundColor={Colors.dark}/>
       {/*

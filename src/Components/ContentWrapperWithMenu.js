@@ -20,8 +20,8 @@ const ContentWrapperWithMenu = props => {
       <View style={styles.downSection}>
 
         <TouchableOpacity activeOpacity={0.5}
-                          style={[styles.menuItem]}
-                          onPress={() => console.log('navigate - chart')}
+                          style={[styles.menuItem, (currentRoute === "Analysis") ? styles.menuItemActive : null]}
+                          onPress={() => navigation.navigate('Analysis')}
         >
           <Image source={require('../assets/img/chart.png')}
                  style={styles.menuItemImage}
@@ -36,7 +36,6 @@ const ContentWrapperWithMenu = props => {
                  style={styles.menuItemImage}
           />
         </TouchableOpacity>
-
 
         <TouchableOpacity activeOpacity={0.5}
                           style={[styles.menuItem, styles.menuItemMain, (currentRoute === "Home") ? styles.menuItemActive : null]}
@@ -60,8 +59,9 @@ const ContentWrapperWithMenu = props => {
                           style={[styles.menuItem, (currentRoute === "Options") ? styles.menuItemActive : null]}
                           onPress={() => navigation.navigate('Options')}
         >
-          <Image source={(currentRoute === "Options") ? require('../assets/img/user.png') : require('../assets/img/user-image.jpg')}
-                 style={[styles.userImage]}
+          <Image
+            source={(currentRoute === "Options") ? require('../assets/img/user.png') : require('../assets/img/user-image.jpg')}
+            style={[styles.userImage]}
           />
         </TouchableOpacity>
 
@@ -74,7 +74,7 @@ export default ContentWrapperWithMenu
 
 const styles = StyleSheet.create({
   upperSection: {
-    flex: 1,
+    flex: 14,
     // justifyContent: "space-between",
   },
   downSection: {
